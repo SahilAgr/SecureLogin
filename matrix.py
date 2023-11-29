@@ -1,10 +1,10 @@
-clientMatrix = [[1, 1, 0],  # userInfo
-                [1, 0, 0],  # accountBalance
-                [1, 0, 0],  # investmentPortfolio
-                [0, 0, 0],  # privateConsumerInstrument
-                [0, 0, 0],  # moneyMakingInstruments
-                [0, 0, 0],  # derivativesTrading
-                [0, 0, 0]]  # interestInstruments
+clientMatrix = [[1, 1, 0],  # userInfo 0
+                [1, 0, 0],  # accountBalance 1
+                [1, 0, 0],  # investmentPortfolio 2
+                [0, 0, 0],  # privateConsumerInstrument 3
+                [0, 0, 0],  # moneyMakingInstruments 4
+                [0, 0, 0],  # derivativesTrading 5
+                [0, 0, 0]]  # interestInstruments 6
 
 premiumClient = [[1, 1, 0],  # userInfo
                  [1, 0, 0],  # accountBalance

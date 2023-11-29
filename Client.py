@@ -1,0 +1,67 @@
+import os
+import matrix
+
+
+class Client:
+    def __init__(self, name, userID):
+        self.name = name
+        self.id = userID
+        self.balance = 0
+        self.investmentPortfolio = []
+        self.access = matrix.clientMatrix
+        # os.mkdir(self.name)
+        # os.chdir(self.name)
+        # file = open('userInfo.txt', 'x')
+        # os.chdir('C:/Users/sahil/Desktop/school ish/y5/last sem/4810/assign')
+
+    def deposit(self, amount):
+        self.balance += amount
+        return self.balance
+
+    def withdraw(self, amount):
+        if self.balance < amount:
+            return 'Insufficient funds'
+        else:
+            self.balance -= amount
+            return self.balance
+
+    def checkBalance(self):
+        return self.balance
+
+    def getName(self):
+        return self.name
+
+    @property
+    def getInvestmentPortfolio(self):
+        return self.investmentPortfolio
+
+    def writeToFile(self):
+        os.chdir(self.name)
+        file = open('userInfo.txt', 'w')
+        file.write("Name: " + self.name + '\n')
+        file.write(str("UserID" + str(self.id) + '\n'))
+        file.write(str("Bank Balance: " + self.balance) + '\n')
+        file.write(str(self.investmentPortfolio) + '\n')
+        file.close()
+        os.chdir('C:/Users/sahil/Desktop/school ish/y5/last sem/4810/assign')
+        return 0
+
+    def getPermissions(self, file, permission):
+        return self.access[file][permission]
+
+    def readFile(self, file, permission, fileName):
+        if self.access[file][permission] == 1:
+            f = open(fileName, "r")
+            print(f.read())
+            f.close()
+        else:
+            print("You do not have permission to read this file")
+
+    def writeToFile(self, file, text, permission, fileName):
+        if self.access[file][permission] == 1:
+            f = open(fileName, "a")
+            f.write(text)
+            f.close()
+        else:
+            print("You do not have permission to write to this file")
+
