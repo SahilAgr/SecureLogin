@@ -10,6 +10,8 @@ import matrix
 
 s = hashlib.sha3_256()
 b = hashlib.sha3_256(b"Hello World!")
+allEmployees = []
+allClients = []
 passwords = [[]]
 
 
@@ -51,12 +53,44 @@ if __name__ == '__main__':
     # c1.writeToFile()
     # c3.writeToFile()
 
-    #print("hello" + str(2))
+    # print("hello" + str(2))
 
-    e1 = Employee.Employee("Josh", "investmentAnalyst", "905-123-4567", matrix.investmentAnalyst)
-    e1.readFile(3, 0, "privateConsumerInstrument.txt")
-    e1.writeToFile(3, "hello", 1, "privateConsumerInstrument.txt")
-    e1.readFile(3, 0, "privateConsumerInstrument.txt")
-    print(e1.getName())
+    allClients.append(Client.Client("Mischa Lowery", 123))
+    allClients.append(Client.Client("Veronica Perez", 124))
+    allClients.append(PremiumClient.PremiumClient(Client.Client("Willow Gara", 100)))
+    allClients.append(PremiumClient.PremiumClient(Client.Client("Nala Preston", 101)))
+    allEmployees.append(Employee.Employee("Winston Callahan", "Teller", "winston@email.com", matrix.employee))
+    allEmployees.append(Employee.Employee("Kelan Gough", "Teller", "kelan@email.com", matrix.employee))
+    allEmployees.append(Employee.Employee("Nelson Wilkins", "Financial Advisor", "nelson@email.com", matrix.financialAdvisor))
+    allEmployees.append(
+        Employee.Employee("Kelsie Chang", "Financial Advisor", "kelsie@email.com", matrix.financialAdvisor))
+    allEmployees.append(
+        Employee.Employee("Howard Linkler", "Compliance Officer", "howard@email.com", matrix.complianceOfficer))
+    allEmployees.append(
+        Employee.Employee("Stefania Smart", "Compliance Officer", "stefania@email.com", matrix.complianceOfficer))
+    allEmployees.append(
+        Employee.Employee("Stacy Kent", "Investment Analyst", "stacy@email.com", matrix.investmentAnalyst))
+    allEmployees.append(
+        Employee.Employee("Keikilana Kapahu", "Investment Analyst", "keikilana@email.com", matrix.investmentAnalyst))
+    allEmployees.append(
+        Employee.Employee("Kodi Matthews", "Financial Planner", "kodi@email.com", matrix.financialPlanner))
+    allEmployees.append(
+        Employee.Employee("Maliikah Wu", "Financial Planner", "malikah@email.com", matrix.financialPlanner))
+    allEmployees.append(
+        Employee.Employee("Caroline Lopez", "Technical Support", "caroline@email.com", matrix.technicalSupport))
+    allEmployees.append(
+        Employee.Employee("Pawel Barclay", "Technical Support", "pawel@email.com", matrix.technicalSupport))
+
+    print(allEmployees[6].getAccess(4, 1))
+
+
+
+
+
+
+    """allEmployees[0].readFile(3, 0, "privateConsumerInstrument.txt")
+    allEmployees[0].writeToFile(3, "hello", 1, "privateConsumerInstrument.txt")
+    allEmployees[0].readFile(3, 0, "privateConsumerInstrument.txt")
+    print(allEmployees[0].getName())"""
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
