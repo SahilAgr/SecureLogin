@@ -3,15 +3,29 @@ import matrix
 
 
 class Client:
-    def __init__(self, name, userID):
+    def __init__(self, name, userID, balance, investmentPortfolio, access, role):
         self.name = name
         self.id = userID
-        self.balance = 0
-        self.investmentPortfolio = []
-        self.access = matrix.clientMatrix
+        self.balance = balance
+        self.investmentPortfolio = investmentPortfolio
+        if access == matrix.clientMatrix or access == matrix.premiumClient:
+            self.access = access
+        else:
+            print("Invalid access matrix")
+        self.role = role
+
         # os.mkdir(self.name)
         # os.chdir(self.name)
-        # file = open('userInfo.txt', 'x')
+        """
+        file = open('allUsers.txt', 'a')
+        file.write(str(self.id) + ";")
+        file.write(self.role + ";")
+        file.write(self.name + ";")
+        file.write(str(self.balance) + ";")
+        file.write(str(self.investmentPortfolio) + '\n')
+
+        file.close()
+        """
         # os.chdir('C:/Users/sahil/Desktop/school ish/y5/last sem/4810/assign')
 
     def deposit(self, amount):
@@ -30,6 +44,12 @@ class Client:
 
     def getName(self):
         return self.name
+
+    def getUserID(self):
+        return self.id
+
+    def getRole(self):
+        return self.role
 
     @property
     def getInvestmentPortfolio(self):
@@ -64,4 +84,3 @@ class Client:
             f.close()
         else:
             print("You do not have permission to write to this file")
-

@@ -7,6 +7,7 @@ class PremiumClient(Client.Client):
         self.name = client.name
         self.id = client.id
         self.balance = client.balance
+        self.role = client.role
         self.investmentPortfolio = client.investmentPortfolio
         self.access = matrix.premiumClient
 
