@@ -56,6 +56,8 @@ class Client:
         return self.role
     def setName(self, name):
         self.name = name
+    def getAccess(self):
+        return self.access
 
     @property
     def getInvestmentPortfolio(self):
