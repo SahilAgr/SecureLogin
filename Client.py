@@ -29,14 +29,18 @@ class Client:
         # os.chdir('C:/Users/sahil/Desktop/school ish/y5/last sem/4810/assign')
 
     def deposit(self, amount):
-        self.balance += amount
+        first = int(self.balance)
+        second = int(amount)
+        self.balance = first + second
         return self.balance
 
     def withdraw(self, amount):
-        if self.balance < amount:
+        first = int(self.balance)
+        second = int(amount)
+        if first < second:
             return 'Insufficient funds'
         else:
-            self.balance -= amount
+            self.balance = first - second
             return self.balance
 
     def checkBalance(self):

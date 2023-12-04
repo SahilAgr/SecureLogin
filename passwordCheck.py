@@ -2,7 +2,7 @@ import hashlib
 import re
 
 
-def check(password, user):
+def check(password, name):
     numCount = 0
     upperCount = 0
     lowerCount = 0
@@ -34,7 +34,7 @@ def check(password, user):
     elif 8 > len(password) or len(password) > 12:
         print("Password must be at least 8-12 characters long")
         return False
-    elif user.getName() in password:
+    elif name in password:
         print("Password cannot be your name")
         return False
 

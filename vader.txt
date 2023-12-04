@@ -1,0 +1,4 @@
+Name: vader
+ID: 300
+Balance: 0
+Investment Portfolio: []
