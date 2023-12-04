@@ -1,6 +1,7 @@
 import hashlib
 import os
 import random
+import time
 import Client
 import PremiumClient
 import Employee
@@ -185,7 +186,7 @@ def welcomeAndLogin():
                 file.write('\n' + str(uId) + ";")
                 file.write("Teller" + ";")
                 file.write(name + ";")
-                file.write(name.strip() + "@finvest.com" + ";")
+                file.write(name.strip() + "@finvest.com")
                 file.close()
                 print("Account created!")
             if role == "2":
@@ -202,9 +203,9 @@ def welcomeAndLogin():
                 addPassword(userPass, allUsers[-1])
                 file = open('allUsers.txt', 'a')
                 file.write('\n' + str(uId) + ";")
-                file.write("Teller" + ";")
+                file.write("Financial Advisor" + ";")
                 file.write(name + ";")
-                file.write(name.strip() + "@finvest.com" + ";")
+                file.write(name.strip() + "@finvest.com")
                 file.close()
                 print("Account created!")
             if role == "3":
@@ -221,9 +222,9 @@ def welcomeAndLogin():
                 addPassword(userPass, allUsers[-1])
                 file = open('allUsers.txt', 'a')
                 file.write('\n' + str(uId) + ";")
-                file.write("Teller" + ";")
+                file.write("Financial Planner" + ";")
                 file.write(name + ";")
-                file.write(name.strip() + "@finvest.com" + ";")
+                file.write(name.strip() + "@finvest.com")
                 file.close()
                 print("Account created!")
             if role == "4":
@@ -240,9 +241,9 @@ def welcomeAndLogin():
                 addPassword(userPass, allUsers[-1])
                 file = open('allUsers.txt', 'a')
                 file.write('\n' + str(uId) + ";")
-                file.write("Teller" + ";")
+                file.write("Investment Analyst" + ";")
                 file.write(name + ";")
-                file.write(name.strip() + "@finvest.com" + ";")
+                file.write(name.strip() + "@finvest.com")
                 file.close()
                 print("Account created!")
             if role == "5":
@@ -259,9 +260,9 @@ def welcomeAndLogin():
                 addPassword(userPass, allUsers[-1])
                 file = open('allUsers.txt', 'a')
                 file.write('\n' + str(uId) + ";")
-                file.write("Teller" + ";")
+                file.write("Technical Support" + ";")
                 file.write(name + ";")
-                file.write(name.strip() + "@finvest.com" + ";")
+                file.write(name.strip() + "@finvest.com")
                 file.close()
                 print("Account created!")
             if role == "6":
@@ -278,9 +279,9 @@ def welcomeAndLogin():
                 addPassword(userPass, allUsers[-1])
                 file = open('allUsers.txt', 'a')
                 file.write('\n' + str(uId) + ";")
-                file.write("Teller" + ";")
+                file.write("Compliance Officer" + ";")
                 file.write(name + ";")
-                file.write(name.strip() + "@finvest.com" + ";")
+                file.write(name.strip() + "@finvest.com")
                 file.close()
                 print("Account created!")
             else:
@@ -327,6 +328,10 @@ def updateAllUsers():
 if __name__ == '__main__':
     readUsers()
     currentUser = welcomeAndLogin()
+    if time.localtime().tm_hour > 17 and currentUser.getRole() == "Teller":
+        print("Good evening " + currentUser.getName() + " your role is " + currentUser.getRole())
+        print("You do not have access to the system after 5PM")
+
     while True:
         if currentUser is None:
             print("User not found, please try again")
@@ -344,7 +349,7 @@ if __name__ == '__main__':
             if currentUser.access[3][0] == 1:
                 print("7. View Private Consumer Instrument")
             if currentUser.access[4][0] == 1:
-                print("8. View Money Making Instruments")
+                print("8. View Money Market Instruments")
             if currentUser.access[5][0] == 1:
                 print("9. View Derivatives Trading")
             if currentUser.access[6][0] == 1:
@@ -383,7 +388,7 @@ if __name__ == '__main__':
             elif userInput == "7":
                 currentUser.readFile(3, 0, "privateConsumerInstrument.txt")
             elif userInput == "8":
-                currentUser.readFile(4, 0, "moneyMakingInstruments.txt")
+                currentUser.readFile(4, 0, "moneyMarketInstruments.txt")
             elif userInput == "9":
                 currentUser.readFile(5, 0, "derivativesTrading.txt")
             elif userInput == "10":

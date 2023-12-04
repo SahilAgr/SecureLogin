@@ -1,3 +1,5 @@
 81;Client;yoda;4000;[]
 189;Teller;obiwan;obiwan@finvest.com
 202;Client;kai;0;[]
+275;Investment Analyst;naruto;naruto@finvest.com
+155;Investment Analyst;sasuke;sasuke@finvest.com
