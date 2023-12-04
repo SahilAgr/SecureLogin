@@ -169,7 +169,7 @@ def welcomeAndLogin():
 
                 userFile.close()
                 file = open('allUsers.txt', 'a')
-                file.write('\n'+str(uId) + ";")
+                file.write('\n' + str(uId) + ";")
                 file.write("Client" + ";")
                 file.write(name + ";")
                 file.write(str(0) + ";")
@@ -200,7 +200,7 @@ def welcomeAndLogin():
                                       matrix.employee))
                 addPassword(userPass, allUsers[-1])
                 file = open('allUsers.txt', 'a')
-                file.write('\n'+str(uId) + ";")
+                file.write('\n' + str(uId) + ";")
                 file.write("Teller" + ";")
                 file.write(name + ";")
                 file.write(name.strip() + "@finvest.com" + ";")
@@ -219,7 +219,7 @@ def welcomeAndLogin():
                                       matrix.financialAdvisor))
                 addPassword(userPass, allUsers[-1])
                 file = open('allUsers.txt', 'a')
-                file.write('\n'+str(uId) + ";")
+                file.write('\n' + str(uId) + ";")
                 file.write("Teller" + ";")
                 file.write(name + ";")
                 file.write(name.strip() + "@finvest.com" + ";")
@@ -238,7 +238,7 @@ def welcomeAndLogin():
                                       matrix.financialPlanner))
                 addPassword(userPass, allUsers[-1])
                 file = open('allUsers.txt', 'a')
-                file.write('\n'+str(uId) + ";")
+                file.write('\n' + str(uId) + ";")
                 file.write("Teller" + ";")
                 file.write(name + ";")
                 file.write(name.strip() + "@finvest.com" + ";")
@@ -257,7 +257,7 @@ def welcomeAndLogin():
                                                   matrix.investmentAnalyst))
                 addPassword(userPass, allUsers[-1])
                 file = open('allUsers.txt', 'a')
-                file.write('\n'+str(uId) + ";")
+                file.write('\n' + str(uId) + ";")
                 file.write("Teller" + ";")
                 file.write(name + ";")
                 file.write(name.strip() + "@finvest.com" + ";")
@@ -276,7 +276,7 @@ def welcomeAndLogin():
                                       matrix.technicalSupport))
                 addPassword(userPass, allUsers[-1])
                 file = open('allUsers.txt', 'a')
-                file.write('\n'+str(uId) + ";")
+                file.write('\n' + str(uId) + ";")
                 file.write("Teller" + ";")
                 file.write(name + ";")
                 file.write(name.strip() + "@finvest.com" + ";")
@@ -295,7 +295,7 @@ def welcomeAndLogin():
                                                   matrix.complianceOfficer))
                 addPassword(userPass, allUsers[-1])
                 file = open('allUsers.txt', 'a')
-                file.write('\n'+str(uId) + ";")
+                file.write('\n' + str(uId) + ";")
                 file.write("Teller" + ";")
                 file.write(name + ";")
                 file.write(name.strip() + "@finvest.com" + ";")
@@ -309,9 +309,37 @@ def welcomeAndLogin():
     else:
         print("Invalid input")
         welcomeAndLogin()
+
+
 def updateAllUsers():
-    open('allUsers.txt', 'w').close()
-    userFile = open('allUsers.txt', 'a')
+    # Clear the file first
+    with open('allUsers.txt', 'w'):
+        pass  # do nothing, just close it
+
+    # Open the file in append mode
+    with open('allUsers.txt', 'a') as userFile:
+        first_user = True
+        for user in allUsers:
+            print(user.getUserID())
+            if not first_user:
+                userFile.write('\n')  # Add newline if it's not the first user
+            else:
+                first_user = False
+
+            if user.getRole() == "Client" or user.getRole() == "Premium Client":
+                userFile.write(str(user.getUserID()) + ";")
+                userFile.write(user.getRole() + ";")
+                userFile.write(user.getName() + ";")
+                userFile.write(str(user.checkBalance()) + ";")
+                userFile.write(str(user.investmentPortfolio))
+            else:
+                userFile.write(str(user.getUserID()) + ";")
+                userFile.write(user.getRole() + ";")
+                userFile.write(user.getName() + ";")
+                userFile.write(user.getContactInfo())
+
+    print("Users updated successfully!")
+
 
 
 
@@ -346,12 +374,12 @@ if __name__ == '__main__':
             userInput = input("Please select an option: ")
             if userInput == "1":
                 if currentUser.getRole() == "Client" or currentUser.getRole() == "Premium Client":
-                    currentUser.readFile(0,0,currentUser.getName()+".txt")
+                    currentUser.readFile(0, 0, currentUser.getName() + ".txt")
                 else:
                     getUser = input("Please enter the name of the user you would like to view: ")
                     for user in allUsers:
                         if user.getName() == getUser:
-                            user.readFile(0,0,getUser+".txt")
+                            user.readFile(0, 0, getUser + ".txt")
             elif userInput == "2":
                 newName = input("Please enter your new name: ")
                 currentUser.setName(newName)
@@ -381,6 +409,7 @@ if __name__ == '__main__':
                 currentUser.readFile(6, 0, "interestInstruments.txt")
             elif userInput == "11":
                 currentUser = None
+                updateAllUsers()
                 currentUser = welcomeAndLogin()
             else:
                 print("Invalid input")

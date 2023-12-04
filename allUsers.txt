@@ -1,3 +1,2 @@
-81;Client;yoda;0;[]
-189;Teller;obiwan;obiwan@finvest.com;
-300;Client;vader;0;[]
+81;Client;yoda;4000;[]
+189;Teller;obiwan;obiwan@finvest.com300
