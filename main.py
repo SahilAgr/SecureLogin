@@ -45,10 +45,6 @@ def readUsers():
     f.close()
 
 
-def readPasswords():
-    f = open("passwords.txt", "r")
-    print(f.read())
-    f.close()
 
 
 # Press the green button in the gutter to run the script.
@@ -56,11 +52,9 @@ def readPasswords():
 def addPassword(password, user):
     allSalts = []
     if passwordCheck.check(password, user.getName()):
-        # print("Password accepted")
         file = open("passwords.txt", "a")
         salt = str(random.Random().randint(0, 1000000000))
         if os.stat("passwords.txt").st_size == 0:
-            print("This ran once")
             file.write(str(user.getUserID()) + ";" + str(salt) + ";" + str(
                 hashlib.sha3_256((password + salt).encode()).hexdigest()))
             return True
@@ -74,17 +68,11 @@ def addPassword(password, user):
 
         if salt in allSalts:
             salt = str(random.Random().randint(0, 1000000000))
-        # print(str(user.getUserID()) + ";" + str(salt) + ";" + str(hashlib.sha3_256((password + salt).encode()).hexdigest()) + "\n")
-        print(str(user.getUserID()))
-        print(str(salt))
-        # print(str(hashlib.sha3_256((password + salt).encode()).hexdigest()))
-
         file.write("\n")
         file.write(str(user.getUserID()) + ";" + str(salt) + ";" + str(
             hashlib.sha3_256((password + salt).encode()).hexdigest()))
 
         file.close()
-    # print(user.getUserID())
 
 
 def welcomeAndLogin():
@@ -99,9 +87,8 @@ def welcomeAndLogin():
         password = input("Please enter your password: ")
         for user in allUsers:
             if user.getName().lower().strip() == username.lower().strip():
-                print("This if staements1")
                 if passwordCheck.correctPassword(user, password):
-                    print("Welcome " + user.getName() + "your role is " + user.getRole())
+                    print("Welcome " + user.getName() + " your role is " + user.getRole())
                     currentUser = user
                     return currentUser
                 else:
@@ -315,7 +302,6 @@ def updateAllUsers():
     with open('allUsers.txt', 'a') as userFile:
         first_user = True
         for user in allUsers:
-            print(user.getUserID())
             if not first_user:
                 userFile.write('\n')  # Add newline if it's not the first user
             else:
